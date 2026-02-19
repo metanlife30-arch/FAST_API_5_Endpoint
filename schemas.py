@@ -10,8 +10,8 @@ class Wallet_Сhange(BaseModel):
     amount:  int = Field(...,description="The amount to withdraw or add money to")
 
 class Wallet_Responce(BaseModel):
-    id: int = Field(...,description="id wallet") 
-    amount:  int = Field(...,description="The amount on the balance sheet")
+    id: int = Field(description="id wallet") 
+    amount:  int = Field(description="The amount on the balance sheet")
 
 
 
