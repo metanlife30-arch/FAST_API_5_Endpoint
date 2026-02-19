@@ -11,7 +11,7 @@ app = FastAPI()
 
 # Эндпоинт для создание кошешька
 @app.post("/api/v1/wallets/create", status_code=201, responses={201: {"description":"Wallet Created"},500: {"description":"Internal server error"}}, response_model=Wallet_Responce, summary="Create a wallet", description="Сreates a wallet for the user",tags=["Wallets"])
-async def wallet_add()->dict:
+async def wallet_add()->Wallet_Responce:
     # Поиск автора поста по ID
     async with async_session_local() as session:
         post = Wallet(amount=0)
@@ -81,7 +81,7 @@ async def get_all_wallets():
 
 #Эндпоинт для получение определенного кошелька
 @app.get("/api/v1/wallets/get/{id}", response_model=Wallet_Responce, responses={200: {"description":"Wallet found"},500: {"description":"Internal server error"}}, summary="Getting a balance", description="Retrieves data for a specific wallet",tags=["Wallets"])
-async def wallet_get(id: Annotated[int,Path(..., title="id wallet", description="Get a wallet by ID")])->dict:
+async def wallet_get(id: Annotated[int,Path(..., title="id wallet", description="Get a wallet by ID")])->Wallet_Responce:
     async with async_session_local() as session:
         # Поиск кошелька по ID
         wallet = await session.get(Wallet, id)
