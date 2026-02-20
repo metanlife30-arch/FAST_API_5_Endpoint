@@ -9,6 +9,7 @@ class Wallet_Сhange(BaseModel):
     operation_type : str = Field(default="DEPOSIT or WITHDRAW",description="The type of operation for adding or withdrawing cash") 
     amount:  int = Field(...,description="The amount to withdraw or add money to")
 
+# Модель данных для вывода ответа для эндпоинта по данным в кошельке
 class Wallet_Responce(BaseModel):
     id: int = Field(description="id wallet") 
     amount:  int = Field(description="The amount on the balance sheet")
