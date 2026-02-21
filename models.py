@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer
 class Wallet(Base):
     __tablename__ = 'Wallet'
 
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, index=True)
     amount = Column(Integer)
 
 
