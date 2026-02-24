@@ -8,7 +8,7 @@ from .dependencies import wallets_service
 # Создание экземпляра FastAPI
 app = FastAPI()
 
-# Эндпоинт для создание кошешька
+# Эндпоинт для создание кошелька
 @app.post("/api/v1/wallets/create", status_code=201, responses={201: {"description":"Wallet Created"},500: {"description":"Internal server error"}}, response_model=WalletResponce, summary="Create a wallet", description="Сreates a wallet for the user",tags=["Wallets"])
 async def wallet_add( wallets_service: Annotated[WalletsService, Depends(wallets_service)])->WalletResponce:
     # Поиск автора поста по ID
@@ -28,7 +28,7 @@ async def wallet_change(wallet:Annotated[WalletСhange,Query()],wallets_service:
     
 
 
-# Эндпоинт для удаление кошешька
+# Эндпоинт для удаление кошелька
 @app.delete("/api/v1/wallets/delete", responses={200: {"description":"Wallet Deleted"},404: {"description":"Wallet not found"},500: {"description":"Internal server error"}}, summary="Delete a wallet",tags=["Wallets"])
 async def delete_wallet(id_wallet: Annotated[int,Query(..., description="Deletes the user's wallet by id")],
                         wallets_service: Annotated[WalletsService, Depends(wallets_service)])->dict:
